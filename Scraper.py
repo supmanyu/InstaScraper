@@ -6,14 +6,17 @@ from array import *
 from socket import error as SocketError
 import errno
 
-#Convert list to string
-def listToString(s):  
-    # initialize an empty string 
-    str1 = ""  
-    # traverse in the string   
+#Initialize global variables
+emails = []
+user = 0
+found_emails = 0
+email_not_exist = 0
+
+#Function to convert list objects to str objects
+def listToString(s):   
+    str1 = ""   
     for ele in s:  
-        str1 += ele   
-    # return string   
+        str1 += ele      
     return str1
 
 #Decode Cloudflare Email Obfuscation
@@ -22,14 +25,10 @@ def decodeEmail(e):
     k = int(e[:2], 16)
     for i in range(2, len(e)-1, 2):
         de += chr(int(e[i:i+2], 16)^k)
-    #print de
     return de
 
-emails = []
-user = 0
-found_emails = 0
-email_not_exist = 0
-f = open('inf_scrapped_null.csv')
+
+f = open('input.csv')
 csv_f = csv.reader(f)
 for row in csv_f:
     user +=1
@@ -42,7 +41,7 @@ for row in csv_f:
     except SocketError as e:
         if e.errno != errno.ECONNRESET:
             raise
-        pass print('The host has reset the connection due to rate limits.')
+        pass print("The host has reset the connection due to rate limits.")
     soup = BeautifulSoup(response.text, 'html.parser')
     h = soup.findAll('h1')
     #print h
@@ -58,7 +57,7 @@ for row in csv_f:
         emails.append([listToString(row),'null'])
         email_not_exist += 1
         #print emails
-with open("new_file.csv","w+") as my_csv:
+with open("output.csv","w+") as my_csv:
     csvWriter = csv.writer(my_csv,delimiter=',')
     for i in range(len(emails)):
         if (emails[i][1] != 'null'):
