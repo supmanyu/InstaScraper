@@ -6,35 +6,38 @@ from array import *
 from socket import error as SocketError
 import errno
 import pytest
+import os
+fileDir = os.path.dirname(os.path.abspath(__file__))   # Directory of the Module
+#print(fileDir)
 
-@pytest.fixture
-def error_fixture():
-    assert 0
+#@pytest.fixture
+#def error_fixture():
+#    assert 0
 
 
 def test_ok():
     print("Code Build Successful")
 
 
-def test_fail():
-    assert 0
+#def test_fail():
+#    assert 0
 
 
-def test_error(error_fixture):
-    pass
+#def test_error(error_fixture):
+#    pass
 
 
-def test_skip():
-    pytest.skip("skipping this test")
+#def test_skip():
+#    pytest.skip("skipping this test")
 
 
-def test_xfail():
-    pytest.xfail("xfailing this test")
+#def test_xfail():
+#    pytest.xfail("xfailing this test")
 
 
-@pytest.mark.xfail(reason="always xfail")
-def test_xpass():
-    pass
+#@pytest.mark.xfail(reason="always xfail")
+#def test_xpass():
+#    pass
 
 #Testing function
 def test_scraper():
@@ -64,7 +67,7 @@ def init_scraper():
     user = 0
     found_emails = 0
     email_not_exist = 0
-    f = open('input.csv')
+    f = open(str(fileDir) + '/input.csv')
     csv_f = csv.reader(f)
     for row in csv_f:
         user +=1
@@ -77,6 +80,7 @@ def init_scraper():
         except SocketError as e:
             if e.errno != errno.ECONNRESET:
                 print('The host has reset the connection due to rate limits.')
+                return False
         soup = BeautifulSoup(response.text, 'html.parser')
         h = soup.findAll('h1')
         #print h
@@ -92,7 +96,7 @@ def init_scraper():
             emails.append([listToString(row),'null'])
             email_not_exist += 1
             #print emails
-    with open("output.csv","w+") as my_csv:
+    with open(str(fileDir) + "/output.csv","w+") as my_csv:
         csvWriter = csv.writer(my_csv,delimiter=',')
         for i in range(len(emails)):
             if (emails[i][1] != 'null'):
