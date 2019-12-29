@@ -9,10 +9,7 @@ setup(
     # Needed to actually package something
     packages=['release'],
     # Needed for dependencies
-    install_requires=['beautifulsoup4'],
-    install_requires=['requests'],
-    install_requires=['soupsieve'],
-    install_requires=['BeautifulSoup'],
+    install_requires=['beautifulsoup4','requests','soupsieve','BeautifulSoup'],
     # *strongly* suggested for sharing
     version='0.1',
     # The license can be anything you like
