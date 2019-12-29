@@ -5,7 +5,6 @@ from time import sleep
 from array import *
 from socket import error as SocketError
 import errno
-from __future__ import print_function
 
 #Initialize global variables
 emails = []
@@ -41,8 +40,7 @@ for row in csv_f:
         response = get(url)
     except SocketError as e:
         if e.errno != errno.ECONNRESET:
-            raise
-        pass print("The host has reset the connection due to rate limits.")
+            print('The host has reset the connection due to rate limits.')
     soup = BeautifulSoup(response.text, 'html.parser')
     h = soup.findAll('h1')
     #print h
