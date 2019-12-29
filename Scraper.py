@@ -5,6 +5,7 @@ from time import sleep
 from array import *
 from socket import error as SocketError
 import errno
+from __future__ import print_function
 
 #Initialize global variables
 emails = []
