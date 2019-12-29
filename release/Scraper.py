@@ -8,44 +8,11 @@ import errno
 import pytest
 import os
 fileDir = os.path.dirname(os.path.abspath(__file__))   # Directory of the Module
-#print(fileDir)
-
-#@pytest.fixture
-#def error_fixture():
-#    assert 0
-
-
-def test_ok():
-    print("Code Build Successful")
-
-
-#def test_fail():
-#    assert 0
-
-
-#def test_error(error_fixture):
-#    pass
-
-
-#def test_skip():
-#    pytest.skip("skipping this test")
-
-
-#def test_xfail():
-#    pytest.xfail("xfailing this test")
-
-
-#@pytest.mark.xfail(reason="always xfail")
-#def test_xpass():
-#    pass
 
 #Testing function
 def test_scraper():
     assert init_scraper() == True
-    return test_ok()
-
-#Initialize global variables
-
+    print("===========================CODE BUILD SUCCESSFUL===========================")
 
 #Function to convert list objects to str objects
 def listToString(s):   
