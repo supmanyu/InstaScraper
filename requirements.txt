@@ -2,3 +2,4 @@ BeautifulSoup==3.2.2
 beautifulsoup4==4.8.2
 requests==2.22.0
 soupsieve==1.9.5
+cfscrape==2.0.8
