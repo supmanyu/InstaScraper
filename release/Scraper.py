@@ -12,8 +12,6 @@ fileDir = os.path.dirname(os.path.abspath(
     __file__))   # Directory of the Module
 
 #Testing function
-
-
 def test_scraper():
     assert init_scraper() == True
     print("===========================CODE BUILD SUCCESSFUL===========================")
