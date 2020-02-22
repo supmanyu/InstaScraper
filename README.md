@@ -4,6 +4,7 @@ A Simple Scraper for Instagram public accounts' e-mail addresses. Built using Py
 * beautifulsoup4 ``` v4.8.2 ```
 * requests ``` v2.22.0 ```
 * soupsieve ``` v1.9.5 ```
+* cfscrape ``` v2.0.3 ``` ``` NEW ```
 # Instructions
 1. Create a new file in the root directory of the project called "input.csv"
 2. Run ``` Python Scraper.py ``` in a Terminal (**Linux or Mac**) or Command Prompt window (**Windows**). This may take a while to complete depending on the total number of usernames.
@@ -11,9 +12,8 @@ A Simple Scraper for Instagram public accounts' e-mail addresses. Built using Py
 
 # Latest Changelog
 ``` 
--Added README.md
--Added requirements.txt
--Added scraper.py
--Cleaned up code
+- Updated scraping algorithm to bypass cloudflare Javascript based bot protection
+- Updated tests (Removed linting with flake8)
+- Updated Setup.py (Added cfscrape to dependencies)
 ```
 > This software is not affiliated with the official Instagram API in any way whatsoever. The user is reliable for any damages caused by the use of this software. This software was developed for educational purposes only.
