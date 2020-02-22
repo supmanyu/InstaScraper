@@ -8,8 +8,7 @@ import errno
 import pytest
 import os
 import cfscrape
-fileDir = os.path.dirname(os.path.abspath(
-    __file__))   # Directory of the Module
+fileDir = os.path.dirname(os.path.abspath(__file__))   # Directory of the Module
 
 #Testing function
 def test_scraper():
@@ -44,7 +43,7 @@ def init_scraper():
     user = 0
     found_emails = 0
     email_not_exist = 0
-    f = open('input.csv')
+    f = open(fileDir + '/input.csv')
     csv_f = csv.reader(f)
     for row in csv_f:
         user += 1
