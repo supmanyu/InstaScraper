@@ -1,3 +1,4 @@
+**WARNING: THIS SCRAPER IS NOT COMPATIBLE WITH PYTHON3 YET. ANY ISSUES REGARDING VERSIONING WILL NOT BE REPLIED TO AND CLOSED IMMEDIATELY.**
 # InstaScraper
 A Simple Scraper for Instagram public accounts' e-mail addresses. Built using Python2.7 and BeautifulSoup4.
 # Requirements
@@ -16,4 +17,4 @@ A Simple Scraper for Instagram public accounts' e-mail addresses. Built using Py
 - Updated tests (Removed linting with flake8)
 - Updated Setup.py (Added cfscrape to dependencies)
 ```
-> This software is not affiliated with the official Instagram API in any way whatsoever. The user is reliable for any damages caused by the use of this software. This software was developed for educational purposes only.
+> This software is not affiliated with the official Instagram API in any way whatsoever. The user is liable for any damages caused by the use of this software. This software was developed for educational purposes only.
