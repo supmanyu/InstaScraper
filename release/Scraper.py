@@ -11,17 +11,13 @@ import cfscrape
 fileDir = os.path.dirname(os.path.abspath(__file__))   # Directory of the Module
 
 #Testing function
-def test_scraper():
-    assert init_scraper() == True
-    print("===========================CODE BUILD SUCCESSFUL===========================")
-
+#def test_scraper():
+#    assert init_scraper() == True
+#    print("===========================CODE BUILD SUCCESSFUL===========================")
 
 #Convert list to string
-
 def listToString(s):
-    # initialize an empty string
     str1 = ""
-    # traverse in the string
     for ele in s:
         str1 += ele
     # return string
@@ -40,6 +36,7 @@ def decodeEmail(e):
 
 def init_scraper():
     emails = []
+    proxies = {"https": "PROXY_URL_HERE"}
     user = 0
     found_emails = 0
     email_not_exist = 0
@@ -47,14 +44,13 @@ def init_scraper():
     csv_f = csv.reader(f)
     for row in csv_f:
         user += 1
-        #print('Username #' + str(user))
         sleep(1)
         listToString(row)
         try:
-            scraper = cfscrape.create_scraper()
-            #url = 'https://www.theinstaprofile.com/email/' + listToString(row)
+            #Get Cloudflare tokens with proxy
+            scraper = cfscrape.create_scraper() 
             response = scraper.get(
-                "https://www.theinstaprofile.com/email/" + listToString(row))
+                "https://www.theinstaprofile.com/email/" + listToString(row),proxies = proxies)
         except SocketError as e:
             if e.errno != errno.ECONNRESET:
                 raise
@@ -87,4 +83,4 @@ def init_scraper():
     print('Total Emails Found: ' + str(found_emails))
     print('Total Emails NOT Found: ' + str(email_not_exist))
     return True
-test_scraper()
+init_scraper()
