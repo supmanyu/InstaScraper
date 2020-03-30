@@ -8,6 +8,10 @@ import errno
 import pytest
 import os
 import cfscrape
+from lxml.html import fromstring
+import requests
+from itertools import cycle
+import traceback
 fileDir = os.path.dirname(os.path.abspath(__file__))   # Directory of the Module
 
 #Testing function
@@ -34,9 +38,26 @@ def decodeEmail(e):
     #print de
     return de
 
+#Grabs proxies from the website
+
+def get_proxies():
+    url = 'https://free-proxy-list.net/'
+    response = requests.get(url)
+    parser = fromstring(response.text)
+    proxies = set()
+    for i in parser.xpath('//tbody/tr')[:10]:
+        if i.xpath('.//td[7][contains(text(),"yes")]'):
+            #Grabbing IP and corresponding PORT
+            proxy = ":".join([i.xpath('.//td[1]/text()')[0], i.xpath('.//td[2]/text()')[0]])
+            proxies.add(proxy)
+    return proxies
+
+proxies = get_proxies()
+proxy_pool = cycle(proxies)
+
 def init_scraper():
     emails = []
-    proxies = {"https": "PROXY_URL_HERE"}
+    proxy = next(proxy_pool)
     user = 0
     found_emails = 0
     email_not_exist = 0
@@ -48,9 +69,9 @@ def init_scraper():
         listToString(row)
         try:
             #Get Cloudflare tokens with proxy
-            scraper = cfscrape.create_scraper() 
+            scraper = cfscrape.create_scraper()
             response = scraper.get(
-                "https://www.theinstaprofile.com/email/" + listToString(row),proxies = proxies)
+                "https://www.theinstaprofile.com/email/" + listToString(row),proxies={"http": proxy, "https": proxy})
         except SocketError as e:
             if e.errno != errno.ECONNRESET:
                 raise
