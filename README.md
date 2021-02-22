@@ -1,4 +1,4 @@
-**I Haven't had the time to work on this project, the website that was used for scraping has been shut down for some unnknown reason, please do not open issues asking for further updates, stay tuned and check this space for any updates, Thanks.**
+**I Haven't had the time to work on this project, the website that was used for scraping has been shut down due to some unknown reason, please do not open issues asking for further updates, stay tuned and check this space for any updates, Thanks.**
 # InstaScraper
 A Simple Scraper for Instagram public accounts' e-mail addresses. Built using Python2.7 and BeautifulSoup4.
 # Requirements
